@@ -43,6 +43,7 @@ form.addEventListener("submit", (e) => {
     // Show new item button
     newItem.classList.remove("hidden");
 
+    window.reload();
     alert("Tilføjet til liste");
   } else {
     alert("Du har afbrudt");
@@ -53,10 +54,16 @@ const List = document.getElementById("list");
 
 const items = JSON.parse(localStorage.getItem("items"));
 
+if (items.length == 0) {
+  List.innerHTML = `<p style="color: #444">Ingen varer i liste</p>`;
+}
+
 items.forEach((item) => {
   const ul = document.getElementById("ul");
   const li = document.createElement("li");
   li.classList.add("list-group-item");
+
+  li.setAttribute("id", item.id);
   li.innerHTML = `
   
    <strong>Varer:</strong> <span>${item.item}</span><br>
@@ -67,3 +74,36 @@ items.forEach((item) => {
   `;
   ul.appendChild(li);
 });
+
+// Delete an item from local storage
+const deleteBtn = document.getElementsByClassName("delete");
+
+for (let i = 0; i < deleteBtn.length; i++) {
+  deleteBtn[i].addEventListener("click", (e) => {
+    const id = e.target.parentElement.getAttribute("id");
+
+    const items = JSON.parse(localStorage.getItem("items"));
+
+    for (let i = 0; i < items.length; i++) {
+      if (items[i].id == id) {
+        items.splice(i, 1);
+      }
+    }
+    localStorage.setItem("items", JSON.stringify(items));
+    e.target.parentElement.remove();
+
+    window.reload();
+    alert("Vare slettet");
+  }),
+    (e) => {
+      alert("Du har afbrudt");
+    };
+}
+
+const total = document.getElementById("total");
+
+const totalPrice = items.reduce((acc, item) => {
+  return acc + parseInt(item.price);
+}, 0);
+
+total.innerHTML = `Total: <strong>${totalPrice}</strong>`;
