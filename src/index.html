@@ -4,9 +4,69 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
     <title>Budget App</title>
   </head>
   <body>
-    <h1>Hello world!</h1>
+    <div class="box welcome">
+      <h1>Budget App</h1>
+    </div>
+
+    <div class="new">
+      <h2>Hvad har du nu købt?</h2>
+
+      <button class="submit" id="new-item">Tilføj ny varer</button>
+
+      <form class="hidden" id="form">
+        <!-- Prisen på det du har købt -->
+        <div class="form-group">
+          <label for="price">Pris:</label>
+          <input
+            type="number"
+            name="price"
+            id="price"
+            class="form-control"
+            placeholder="Hvad er prisen på varen du har købt?"
+            required
+          />
+        </div>
+
+        <!-- Den butik du har købt noget i -->
+        <div class="form-group">
+          <label for="store">Butik:</label>
+          <input
+            type="text"
+            name="store"
+            id="store"
+            class="form-control"
+            placeholder="Hvad butik har du købt varen i?"
+            required
+          />
+        </div>
+
+        <!-- Hvad har du købt -->
+        <div class="form-group">
+          <label for="item">Købt:</label>
+          <textarea
+            type="text"
+            name="item"
+            id="item"
+            class="form-control"
+            placeholder="Hvad har du købt?"
+            required
+          ></textarea>
+        </div>
+
+        <!-- Submit knappen -->
+        <button type="submit" class="submit">Tilføj til liste</button>
+      </form>
+    </div>
+
+    <div id="list" class="list">
+      <ul id="ul"></ul>
+    </div>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
   </body>
 </html>
