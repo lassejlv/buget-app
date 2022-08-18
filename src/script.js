@@ -1,6 +1,12 @@
 const newItem = document.getElementById("new-item");
 const form = document.getElementById("form");
 const date = document.getElementById("date");
+const cancel = document.getElementById("cancel");
+
+cancel.addEventListener("click", function () {
+  form.classList.add("hidden");
+  newItem.classList.remove("hidden");
+});
 
 date.value = new Date().toISOString().split("T")[0];
 
@@ -60,6 +66,8 @@ const List = document.getElementById("list");
 const items = JSON.parse(localStorage.getItem("items"));
 
 if (items.length == 0) {
+  List.innerHTML = `<p style="color: #444">Ingen varer i liste</p>`;
+} else if (!items) {
   List.innerHTML = `<p style="color: #444">Ingen varer i liste</p>`;
 }
 

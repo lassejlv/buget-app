@@ -97,6 +97,10 @@ body {
   box-shadow: 0 0 0 0.2rem var(--brand-color);
 }
 
+.submit-danger {
+  background: rgb(235, 100, 100) !important;
+}
+
 /* List */
 
 .list {
