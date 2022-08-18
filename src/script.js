@@ -1,5 +1,8 @@
 const newItem = document.getElementById("new-item");
 const form = document.getElementById("form");
+const date = document.getElementById("date");
+
+date.value = new Date().toISOString().split("T")[0];
 
 newItem.addEventListener("click", () => {
   form.classList.remove("hidden");
@@ -13,6 +16,7 @@ form.addEventListener("submit", (e) => {
   const priceInput = document.getElementById("price").value;
   const storeInput = document.getElementById("store").value;
   const itemInput = document.getElementById("item").value;
+  const dateInput = document.getElementById("date").value;
 
   // Confirm
   const confirm = window.confirm(
@@ -26,6 +30,7 @@ form.addEventListener("submit", (e) => {
       price: priceInput,
       store: storeInput,
       item: itemInput,
+      date: dateInput,
     };
     let items = [];
     if (localStorage.getItem("items") === null) {
@@ -69,6 +74,7 @@ items.forEach((item) => {
    <strong>Varer:</strong> <span>${item.item}</span><br>
    <strong>Butik:</strong> <span>${item.store}</span> <br>
    <strong>Pris:</strong> <span>${item.price} Kr</span> <br>
+   <strong>Dato:</strong> <span>${item.date}</span> <br>
    <button id="delete" class="delete">Slet</button>
     
   `;

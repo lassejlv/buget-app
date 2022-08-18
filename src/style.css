@@ -57,6 +57,11 @@ body {
   border-radius: 4px;
 }
 
+.new .form-control:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 .new .form-control:focus {
   outline: none;
 }
